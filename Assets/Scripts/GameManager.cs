@@ -5,12 +5,11 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 { 
-    public static GameManager instance { get; private set; }
+    public static GameManager instance { get; private set; } //ENCAPSULATION
     public UnityAction OnLevelFinish;
 
-    float horizontalInput,verticalInput;
-    [SerializeField] int currentLevel = 1;
-    [SerializeField] public int ballsLeft = 10;
+    int currentLevel = 1;
+    public int ballsLeft = 10;
     float difficultyMultiplier=1.2f;
     SpawnSphere spawnSphere;
     Counter counter;
@@ -34,20 +33,7 @@ public class GameManager : MonoBehaviour
         ballsLeft = 10;
         PersistentDataManager.instance.currentScore = 0;
     }
-    void IncreaseDifficulty()
-    {
-        if (PersistentDataManager.instance.currentScore < 0) { PlayerPrefs.SetInt("highestLevel",currentLevel); FinishGame(); } //Finish game
-        //Increase level
-        currentLevel++;
-        //Increase ball count
-        spawnSphere.numberOfSpheres = (int)(difficultyMultiplier* spawnSphere.numberOfSpheres);
-        Debug.Log($"New amount of balls {spawnSphere.numberOfSpheres}");
-        //Increase gravity
-        Physics.gravity *= difficultyMultiplier;
-        //Reset counter;
-        counter.count = 0;
-        spawnSphere.LaunchNextWave();
-    }
+    
     public void ChangeBallCount()
     {
         if (counter == null) { counter = FindObjectOfType<Counter>(); }
@@ -56,9 +42,22 @@ public class GameManager : MonoBehaviour
         if (ballsLeft == 0)
         {
             Debug.Log("Finished level!");
-            IncreaseDifficulty();
-            //OnLevelFinish.Invoke();
+            IncreaseDifficulty(); //ABSTRACTION
         }
+    }
+    void IncreaseDifficulty()
+    {
+        if (PersistentDataManager.instance.currentScore < 0) { PlayerPrefs.SetInt("highestLevel", currentLevel); FinishGame(); } //Finish game
+        //Increase level
+        currentLevel++;
+        //Increase ball count
+        spawnSphere.numberOfSpheres = (int)(difficultyMultiplier * spawnSphere.numberOfSpheres);
+        Debug.Log($"New amount of balls {spawnSphere.numberOfSpheres}");
+        //Increase gravity
+        Physics.gravity *= difficultyMultiplier;
+        //Reset counter;
+        counter.count = 0;
+        spawnSphere.LaunchNextWave();
     }
     public void FinishGame()
     {
