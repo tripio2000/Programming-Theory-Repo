@@ -5,24 +5,23 @@ using UnityEngine.Events;
 
 public class SceneManager : MonoBehaviour
 {
-    enum Scene {Start, Game, Results}
-    Scene currentScene;
     int buildIndex;
     private void Awake()
     {
         DontDestroyOnLoad(this);
-        currentScene = Scene.Start;
         buildIndex = 0;
     }
     public void ChangeScene()
     {
         if(buildIndex == UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings - 1)
         {
-            buildIndex=0;
+            Debug.Log("Launching menu");
+            buildIndex=0; //Last scene, return to menu
         }
         else
         {
-            buildIndex++;
+            Debug.Log("Launching game");
+            buildIndex++; //Load next scene
         }
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(buildIndex);
     }

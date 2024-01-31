@@ -12,8 +12,8 @@ public class RegisterPrize : MonoBehaviour
         if (other.tag == "Ball")
         {
             //Register player score
-            PlayerData.instance.UpdateScore(score);
-            tmProScore.text = $"Current score: {PlayerData.instance.currentScore}";
+            PersistentDataManager.instance.UpdateScore(score);
+            tmProScore.text = $"Current score: {PersistentDataManager.instance.currentScore}";
         }
     }
 }

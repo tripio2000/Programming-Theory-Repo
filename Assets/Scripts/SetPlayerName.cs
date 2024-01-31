@@ -13,6 +13,6 @@ public class SetPlayerName : MonoBehaviour
     }
     public void SetName()
     {
-        PlayerData.instance.SetPlayerName(tmPROInput.text);
+        PersistentDataManager.instance.SetPlayerName(tmPROInput.text);
     }
 }

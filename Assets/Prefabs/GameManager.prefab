@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5684975496687757145}
   - component: {fileID: 5684975496687757146}
   - component: {fileID: 5684975496687757144}
-  - component: {fileID: 5684975496687757127}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 1
   ballsLeft: 10
-  spawnSphere: {fileID: 5684975496687757144}
 --- !u!114 &5684975496687757144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,18 +62,3 @@ MonoBehaviour:
   spherePrefab: {fileID: 4952203280155537184, guid: c3b9954ffca72f341b8646d690b36c34, type: 3}
   centerLocation: {x: 0, y: 8, z: 0}
   numberOfSpheres: 0
---- !u!114 &5684975496687757127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5684975496687757147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8858a2941cbc6640bcd4a9800882c65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerName: 
-  currentScore: 0
-  highestScore: 0

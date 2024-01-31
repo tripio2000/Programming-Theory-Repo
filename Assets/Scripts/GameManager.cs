@@ -6,12 +6,12 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 { 
     public static GameManager instance { get; private set; }
+    public UnityAction OnLevelFinish;
 
     float horizontalInput,verticalInput;
     [SerializeField] int currentLevel = 1;
     [SerializeField] public int ballsLeft = 10;
     float difficultyMultiplier=1.2f;
-    public UnityAction OnLevelFinish;
     SpawnSphere spawnSphere;
     Counter counter;
     private void Awake()
@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour
     {
         currentLevel = 1;
         ballsLeft = 10;
-        PlayerData.instance.currentScore = 0;
+        PersistentDataManager.instance.currentScore = 0;
     }
     void IncreaseDifficulty()
     {
-        if (PlayerData.instance.currentScore < 0) { PlayerPrefs.SetInt("highestLevel",currentLevel); FinishGame(); } //Finish game
+        if (PersistentDataManager.instance.currentScore < 0) { PlayerPrefs.SetInt("highestLevel",currentLevel); FinishGame(); } //Finish game
         //Increase level
         currentLevel++;
         //Increase ball count
